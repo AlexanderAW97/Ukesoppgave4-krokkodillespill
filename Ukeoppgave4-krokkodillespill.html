@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krokkodillespill</title>
+</head>
+<body>
+
+  <head>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .numbers {
+        font-size: 60px;
+        margin-bottom: 20px;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 1000;
+      }
+      .input-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      input[type="text"] {
+        font-size: 36px;
+        padding: 10px;
+      }
+      
+      .score {
+        font-size: 50px;
+        margin-top: 20px;
+        font-family: 'Courier New', Courier, monospace;
+      }
+      
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="numbers" id="numbers"></div>
+
+      <div class="input-container">
+
+        <input type="text" id="input">
+
+        <button id="submit">Sjekk!</button>
+
+      </div>
+
+      <div class="score" id="score"></div>
+
+    </div>
+    
+    <script>
+
+      const numbers = document.getElementById("numbers");
+
+      const input = document.getElementById("input");
+
+      const submit = document.getElementById("submit");
+
+      const score = document.getElementById("score");
+      
+      let num1 = Math.floor(Math.random() * 100);
+      let num2 = Math.floor(Math.random() * 100);
+      let points = 0;
+
+      numbers.textContent = `${num1} ? ${num2}`;
+
+      //
+      submit.addEventListener("click", function() {
+        if ((input.value === ">" && num1 > num2) || (input.value === "<" && num1 < num2)) {
+          points++;
+          score.textContent = `Score: ${points}`;
+        }
+
+        num1 = Math.floor(Math.random() * 100);
+        num2 = Math.floor(Math.random() * 100);
+        numbers.textContent = `${num1} ? ${num2}`;
+        input.value = "";
+      });
+    </script>
+  </body>
+</html>
